@@ -1,0 +1,44 @@
+<script>
+
+function Racer(name, speed, hitguy){
+  this.name = name;
+  this.speed = speed;
+  this.hitguy = hitguy;
+  this.position = 0;
+  this.didNothitguy = function(){
+    return Math.floor(Math.random() * 10) < this.hitguy
+  }
+  this.drive = function(){
+    if (this.didNothitguy()) {
+      this.position += this.speed;
+    }
+  }
+  this.progress = function() {
+    return this.name + " is on lap " + this.position
+  }
+}
+
+var stewart = new Racer("Tony Stewart", 9, 5);
+var gordon = new Racer("Jeff Gordon", 7, 7);
+var patrick = new Racer("Danica Patrick", 6, 9);
+
+var lap = 200;
+
+while (stewart.position < lap && gordon.position < lap && patrick.position < lap){
+  stewart.drive();
+  gordon.drive();
+  patrick.drive();
+  alert(stewart.progress() + " : " + gordon.progress() + " : " + patrick.progress());
+}
+
+if (stewart.position > 200){
+  alert("Tony Stewart wins!");
+}
+if (gordon.position > 200){
+  alert("Jeff Gordon wins!");
+}
+if (patrick.position > 200){
+  alert("Danica Patrick wins!")
+}
+
+</script>
